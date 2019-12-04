@@ -1,0 +1,38 @@
+{
+  "name": "aoc19",
+  "version": "1.0.0",
+  "description": "Advent Of Code 2019",
+  "main": "fetch.js",
+  "scripts": {
+    "01": "node day01/index.js",
+    "02": "node day02/index.js",
+    "03": "node day03/index.js",
+    "04": "node day04/index.js",
+    "05": "node day05/index.js",
+    "06": "node day06/index.js",
+    "07": "node day07/index.js",
+    "08": "node day08/index.js",
+    "09": "node day09/index.js",
+    "10": "node day10/index.js",
+    "11": "node day11/index.js",
+    "12": "node day12/index.js",
+    "13": "node day13/index.js",
+    "14": "node day14/index.js",
+    "15": "node day15/index.js",
+    "16": "node day16/index.js",
+    "17": "node day17/index.js",
+    "18": "node day18/index.js",
+    "19": "node day19/index.js",
+    "20": "node day20/index.js",
+    "21": "node day21/index.js",
+    "22": "node day22/index.js",
+    "23": "node day23/index.js",
+    "24": "node day24/index.js",
+    "25": "node day25/index.js"
+  },
+  "author": "Manuel Wolkowitsch",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
