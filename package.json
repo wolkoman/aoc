@@ -28,7 +28,8 @@
     "22": "node day22/index.js",
     "23": "node day23/index.js",
     "24": "node day24/index.js",
-    "25": "node day25/index.js"
+    "25": "node day25/index.js",
+    "reset": "node reset.js"
   },
   "author": "Manuel Wolkowitsch",
   "license": "ISC",

@@ -1,29 +1,27 @@
 var fetch = require('node-fetch');
 var fs = require('fs');
-
-const lz = (x) => (x<10?'0':'')+x;
-
-let http = (year,day) => `https://adventofcode.com/${year}/day/${day}/input`;
-let cookiePath = `cookie.txt`;
-let yearPath = `year.txt`;
-let payloadPath = (day) => `day${lz(day)}/payload.txt`;
+var settings = require('./settings');
 
 module.exports = (day) => {
-  let content;
-  if(fs.existsSync(payloadPath(day))){
+  if(!fs.existsSync(settings.cookiePath)){
+    console.log("Please provide a cookie.txt in the root directory with the following form:");
+    console.log("session={{YOUR SESSION COOKIE FROM ADVENTOFCODE.COM}};");
+    process.exit();
+  }
+  if(fs.existsSync(settings.payloadPath(day))){
     return new Promise((res,rej) => {
-      fs.readFile(payloadPath(day), {}, (err,data) => {
+      fs.readFile(settings.payloadPath(day), {}, (err,data) => {
         res(data.toString());
       });
     })
   }else{
-    let year = fs.readFileSync(yearPath).toString().trim();
-    return fetch(http(year,day), {
+    let year = fs.readFileSync(settings.yearPath).toString().trim();
+    return fetch(settings.http(year,day), {
       headers: {
-        cookie: fs.readFileSync(cookiePath)
+        cookie: fs.readFileSync(settings.cookiePath).toString().trim()
       }
     }).then(x => x.text()).then(x => {
-      fs.writeFileSync(payloadPath(day), x);
+      fs.writeFileSync(settings.payloadPath(day), x);
       return x;
     });
   }
