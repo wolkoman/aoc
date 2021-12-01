@@ -1,4 +1,4 @@
-require('../fetch.js')(1).then(x => {
+require('../../fetch.js')(2019, 1).then(x => {
   function fuel(x){
 
     return Math.max(0,Math.floor(parseFloat(x)/3)-2);
@@ -20,8 +20,5 @@ require('../fetch.js')(1).then(x => {
 
   console.log(xs1.reduce((p,c) => p+c, 0));
   console.log(xs2.reduce((p,c) => p+c, 0));
-
-
-
 
 });

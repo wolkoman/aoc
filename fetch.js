@@ -2,7 +2,7 @@ var fetch = require('node-fetch');
 var fs = require('fs');
 var settings = require('./settings');
 
-module.exports = (day) => {
+module.exports = (year, day) => {
   if(!fs.existsSync(settings.cookiePath)){
     console.log("Please provide a cookie.txt in the root directory with the following form:");
     console.log("session={{YOUR SESSION COOKIE FROM ADVENTOFCODE.COM}};");
@@ -15,7 +15,6 @@ module.exports = (day) => {
       });
     })
   }else{
-    let year = fs.readFileSync(settings.yearPath).toString().trim();
     return fetch(settings.http(year,day), {
       headers: {
         cookie: fs.readFileSync(settings.cookiePath).toString().trim()

@@ -1,4 +1,4 @@
-require('../fetch.js')(8).then(x => {
+require('../../fetch.js')(2019, 8).then(x => {
   
   let w = 25;
   let h = 6;

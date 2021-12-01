@@ -1,4 +1,4 @@
-require('../fetch.js')(3).then(x => {
+require('../../fetch.js')(2019, 3).then(x => {
 
   let fs = require("fs");
 

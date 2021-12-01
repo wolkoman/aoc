@@ -1,4 +1,4 @@
-require('../fetch.js')(9).then(x => {
+require('../../fetch.js')(2019, 9).then(x => {
 
 
   let des =["","add","mul","inp","out","jnz","jz ","les","equ","rel"];

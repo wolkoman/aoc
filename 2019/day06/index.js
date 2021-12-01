@@ -1,4 +1,4 @@
-require('../fetch.js')(6).then(x => {
+require('../../fetch.js')(2019, 6).then(x => {
 
   class Object{
     constructor(name, orbits){

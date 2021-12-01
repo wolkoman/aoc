@@ -1,4 +1,4 @@
-require('../fetch.js')(2).then(x => {
+require('../../fetch.js')(2019, 2).then(x => {
 
  function foo(a,b){
   let c = x.split("\n").filter(x => x !== '')[0].split(",").map(x => parseInt(x));

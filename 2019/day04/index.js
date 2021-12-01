@@ -1,4 +1,4 @@
-require('../fetch.js')(4).then(x => {
+require('../../fetch.js')(2019, 4).then(x => {
 
   x = x.split("\n")[0].split('-').map( x => parseInt(x));
   let min = x[0];

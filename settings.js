@@ -10,7 +10,7 @@ const cookiePath = `cookie.txt`;
 const yearPath = `year.txt`;
 
 // path to the individual payload file
-const payloadPath = (day) => `day${lz(day)}/payload.txt`;
+const payloadPath = (day) => `2021/day${lz(day)}/payload.txt`;
 
 // helper
 const lz = (x) => (x<10?'0':'')+x;

@@ -1,4 +1,4 @@
-require('../fetch.js')(5).then(x => {
+require('../../fetch.js')(2019, 5).then(x => {
 
   function foo(code, input){
     let c = [...code];
