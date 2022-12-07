@@ -1,3 +1,3 @@
 cookie.txt
-**/payload.txt
+**/*.payload.txt
 node_modules
