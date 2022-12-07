@@ -1,8 +1,10 @@
-import {getPayload} from "../deno_aoc.ts";
+import { playDay } from "../deno_aoc.ts";
 
-(async function () {
+playDay(1, async (input, submit, expectTest) => {
 
-    const input = await getPayload(1);
+    await expectTest(1, 24000);
+    await expectTest(2, 45000);
+
     const caloriesSum = input
         .split("\n\n")
         .map(calories => calories
@@ -12,11 +14,12 @@ import {getPayload} from "../deno_aoc.ts";
         ).filter(sum => sum !== NaN);
     const caloryMax = Math.max(...caloriesSum);
     const topThreeSum = caloriesSum
-        .sort((a,b) => b-a)
-        .slice(0,3)
-        .reduce((sum, value) => sum+value);
+        .sort((a, b) => b - a)
+        .slice(0, 3)
+        .reduce((sum, value) => sum + value);
 
-    console.log({answer1: caloryMax, answer2: topThreeSum});
+    await submit(1, caloryMax);
+    await submit(2, topThreeSum);
 
 
-})()
+})

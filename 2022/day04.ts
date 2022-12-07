@@ -25,6 +25,6 @@ playDay(4, async (input, submit, expectTest) => {
         .filter(line => line.length > 0)
         .map(line => line.split(",").map(x => x.split("-").map(x => +x)))
         .filter(([range1,range2]) => overlap(range1,range2) || overlap(range2, range1)).length;
-    await submit(4, answer2);
+    await submit(2, answer2);
 
 })

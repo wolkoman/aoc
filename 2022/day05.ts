@@ -1,4 +1,4 @@
-import {playDay} from "../deno_aoc.ts";
+leimport {playDay} from "../deno_aoc.ts";
 
 playDay(5, async (input, submit, expectTest) => {
 

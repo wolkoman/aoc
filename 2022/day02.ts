@@ -15,8 +15,8 @@ playDay(2, async (input, submit, expectTest) => {
         })).map(({enemy,me}) => ({
             pickPoints: me+1,
             winPoints: me === enemy ? 3 : ((me === (enemy+1)%3) ? 6 : 0)
-        })).reduce<number>((sum,round) => sum + round.winPoints + round.pickPoints, 0);
-    await submit(1, rounds+"");
+        })).reduce((sum,round) => sum + round.winPoints + round.pickPoints, 0);
+    await submit(1, rounds);
 
     await expectTest(2, "12");
     const rounds2 = payload
@@ -29,6 +29,6 @@ playDay(2, async (input, submit, expectTest) => {
         })).map(({me,win}) => ({
             pickPoints: me+1,
             winPoints: [0,3,6][win]
-        })).reduce<number>((sum,round) => sum + round.winPoints + round.pickPoints, 0);
-    await submit(2, rounds2+"");
+        })).reduce((sum,round) => sum + round.winPoints + round.pickPoints, 0);
+    await submit(2, rounds2);
 })

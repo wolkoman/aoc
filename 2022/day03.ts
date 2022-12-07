@@ -4,7 +4,7 @@ playDay(3, async (input, submit, expectTest) => {
 
     await expectTest(1, 157);
 
-    function getSameChars(line1: string, line2: string) {
+    function getSameChars(line1: string, line2: string | string[]) {
         return [...line1].filter(char => [...line2].indexOf(char) !== -1);
     }
 
@@ -28,6 +28,6 @@ playDay(3, async (input, submit, expectTest) => {
         .reduce((a,b) => a+b, 0)
 
 
-    await submit(2, JSON.stringify(answer2));
+    await submit(2, answer2);
 
 })
