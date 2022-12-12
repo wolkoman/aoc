@@ -19,7 +19,7 @@ export async function getPayload(day: number, year = 2022, testOffset?: number) 
             let payload = data;
             if (isTest) {
                 const document = new DOMParser().parseFromString(payload, 'text/html');
-                payload = document.querySelectorAll("pre code")[testOffset].innerHTML;
+                payload = document.querySelectorAll("pre code")[testOffset].innerText;
             }
             await Deno.writeTextFile(payloadPath, payload)
             return payload;
@@ -32,16 +32,28 @@ type Solution = (
     expectTest: (part: 1 | 2, answer: any) => void
 ) => Promise<void>;
 
-export async function playDay(day: number, solutionOrExampleOffset: Solution | number, extraSolution?: Solution) {
+type TestInput = {
+    testInput1: number;
+    testInput2: number;
+};
+
+export async function playDay(day: number, solutionOrExampleOffset: Solution | number | TestInput, extraSolution?: Solution) {
 
     const solution = extraSolution ?? solutionOrExampleOffset as Solution;
-    const offset = extraSolution ? solutionOrExampleOffset as number : 0
-    const testPayload = await getPayload(day, undefined, offset);
+    const offset = extraSolution ? solutionOrExampleOffset as number | TestInput : 0;
+    const testInput = {testInput1: 0, testInput2: 0};
+    if(((x: number | TestInput): x is number => Number.isInteger(x))(offset)){
+        testInput.testInput1 = offset;
+        testInput.testInput2 = offset;
+    }else{
+        testInput.testInput1 = offset.testInput1;
+        testInput.testInput2 = offset.testInput2;
+    }
     let testAnswer1: string, testAnswer2: string;
 
     const submitReal = (submitPart: 1 | 2) => async (part: 1 | 2, answer: string) => {
         if (submitPart === part)
-            console.log("Answer to part ", part, " is ", answer);
+            console.log(`Answer to part ${part}:`, answer);
     }
 
     const submitTest = async (part: 1 | 2, answerA: any, forceReal?: boolean) => {
@@ -60,5 +72,6 @@ export async function playDay(day: number, solutionOrExampleOffset: Solution | n
         else if (part === 2)
             testAnswer2 = answer;
     }
-    await solution(testPayload, submitTest, expectTestAnswer);
+    const testPayload1 = await getPayload(day, undefined, testInput.testInput1);
+    await solution(testPayload1, submitTest, expectTestAnswer);
 }
