@@ -30,23 +30,25 @@ playDay(14, async (input, submit, expectTest) => {
         let sandLost = false;
         let sandCount = 0
         while (!sandLost) {
-            const sand = { x: 500, y: 0 };
-            let possibilies = [sand.x, sand.x - 1, sand.x + 1];
-            let mat = possibilies.map(x => landscape[sand.y - startY + 1][x - startX]);
-            while (mat.some(m => m === "." || m === undefined) && !sandLost) {
-                sand.y++;
-                if (mat[0] === "." || mat === undefined) sand.x = possibilies[0];
-                else if (mat[1] === "." || mat === undefined) sand.x = possibilies[1]
-                else if (mat[2] === "." || mat === undefined) sand.x = possibilies[2];
-                if (sand.x > startX + width || sand.x < startX || sand.y < startY || sand.y > startY + height) {
-                    sandLost = true;
+            {
+                const sand = { x: 500, y: 0 };
+                let possibilies = [sand.x, sand.x - 1, sand.x + 1];
+                let mat = possibilies.map(x => landscape[sand.y - startY + 1]?.[x - startX]);
+                while (mat.some(m => m === "." || m === undefined) && !sandLost) {
+                    sand.y++;
+                    if (mat[0] === "." || mat === undefined) sand.x = possibilies[0];
+                    else if (mat[1] === "." || mat === undefined) sand.x = possibilies[1]
+                    else if (mat[2] === "." || mat === undefined) sand.x = possibilies[2];
+                    if (sand.x > startX + width || sand.x < startX || sand.y < startY || sand.y > startY + height) {
+                        sandLost = true;
+                    }
+                    possibilies = [sand.x, sand.x - 1, sand.x + 1];
+                    mat = possibilies.map(x => landscape[sand.y - startY + 1]?.[x - startX]);
                 }
-                possibilies = [sand.x, sand.x - 1, sand.x + 1];
-                mat = possibilies.map(x => landscape[sand.y - startY + 1]?.[x - startX]);
-            }
-            if (!sandLost) {
-                landscape[sand.y - startY][sand.x - startX] = "o";
-                sandCount++;
+                if (!sandLost) {
+                    landscape[sand.y - startY][sand.x - startX] = "o";
+                    sandCount++;
+                }
             }
         }
 
